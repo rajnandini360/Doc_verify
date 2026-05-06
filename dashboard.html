@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+
+<style>
+body {
+  background: #050816;
+  color: #e2e8f0;
+  font-family: Arial;
+  padding: 30px;
+}
+
+h2 {
+  color: #38bdf8;
+}
+
+.card {
+  background: #0f172a;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+button {
+  padding: 10px;
+  margin: 5px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.register { background: #38bdf8; }
+.verify { background: #a78bfa; }
+
+table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+  text-align: center; /* ✅ center all content */
+}
+
+th {
+  background: #020617;
+  color: #38bdf8;
+  font-weight: 600;
+}
+
+td, th {
+  padding: 12px;
+  border-bottom: 1px solid #1e293b;
+}
+
+/* ✅ center image properly */
+td img {
+  display: block;
+  margin: auto;
+}
+
+/* ✅ status alignment */
+td:first-child {
+  font-weight: 600;
+}
+
+/* hover effect */
+tr:hover {
+  background: #020617;
+}
+
+/* 🔝 TOP BAR */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* LOGO */
+.logo {
+  color: #38bdf8;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* 🚪 LOGOUT BUTTON */
+.logout {
+  background: transparent;
+  border: 1px solid #ef4444;
+  color: #ef4444;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logout:hover {
+  background: #ef4444;
+  color: black;
+}
+/* 💬 Button */
+#chatbot-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #38bdf8;
+  color: black;
+  padding: 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  box-shadow: 0 0 10px #38bdf8;
+}
+
+/* 💬 Chat Box */
+#chatbot {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  width: 320px;
+  height: 420px;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  display: none;
+  flex-direction: column;
+}
+
+/* Header */
+.chat-header {
+  background: #38bdf8;
+  color: black;
+  padding: 10px;
+  font-weight: bold;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+/* Messages */
+#chat-messages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+/* Message style */
+.msg {
+  margin-bottom: 10px;
+}
+
+.user { color: #38bdf8; }
+.bot { color: #a78bfa; }
+
+/* Input */
+.chat-input {
+  display: flex;
+  border-top: 1px solid #1e293b;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: #020617;
+  color: white;
+}
+
+.chat-input button {
+  background: #38bdf8;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+}
+</style>
+
+</head>
+<body>
+
+    <div class="topbar">
+  <div class="logo">DocVerify AI</div>
+  <button class="logout" onclick="logout()">Logout</button>
+</div>
+<h2 class="welcome"></h2>
+
+<div class="card">
+  <h3>Upload Document</h3>
+
+  <input type="file" id="fileInput">
+
+  <!-- ✅ IMAGE PREVIEW -->
+  <br>
+  <img id="preview" style="display:none; width:120px; margin-top:10px;">
+
+  <br><br>
+
+  <button class="register" onclick="upload('register')">Register</button>
+  <button class="verify" onclick="upload('verify')">Verify</button>
+
+  <p id="result"></p>
+</div>
+
+<div class="card">
+  <h3>History</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Status</th>
+        <th>Image</th>
+        <th>Date & Time</th>
+      </tr>
+    </thead>
+    <tbody id="docTable"></tbody>
+  </table>
+</div>
+
+<!-- 💬 Floating Button -->
+<div id="chatbot-btn" onclick="toggleChat()">💬</div>
+
+<!-- 💬 Chat Box -->
+<div id="chatbot">
+  <div class="chat-header">DocVerify Assistant</div>
+
+  <div id="chat-messages"></div>
+
+  <div class="chat-input">
+    <input type="text" id="chatInput" placeholder="Ask about verification..." />
+    <button onclick="sendMessage()">➤</button>
+  </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>

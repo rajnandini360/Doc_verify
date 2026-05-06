@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DocVerify AI</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+}
+
+body{
+  background:#050816;
+  color:#e2e8f0;
+  overflow-x:hidden;
+}
+
+/* glow background */
+.bg-glow{
+  position:fixed;
+  width:600px;
+  height:600px;
+  background:radial-gradient(circle,#38bdf8 0%,transparent 70%);
+  filter:blur(130px);
+  opacity:0.18;
+  animation:moveGlow 12s infinite alternate ease-in-out;
+}
+
+.bg-glow.one{top:-120px;left:-120px;}
+.bg-glow.two{bottom:-150px;right:-150px;background:radial-gradient(circle,#a78bfa 0%,transparent 70%);}
+
+@keyframes moveGlow{
+  from{transform:translate(0,0) scale(1);}
+  to{transform:translate(100px,80px) scale(1.2);}
+}
+
+/* NAV */
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 60px;
+  backdrop-filter:blur(14px);
+  background:rgba(5,8,22,0.7);
+  border-bottom:1px solid #1e293b;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.logo{
+  font-weight:700;
+  color:#38bdf8;
+  font-size:20px;
+  letter-spacing:1px;
+}
+
+nav a{
+  margin:0 14px;
+  text-decoration:none;
+  color:#94a3b8;
+  font-size:14px;
+  transition:0.3s;
+}
+
+nav a:hover{color:#38bdf8;}
+
+.btn{
+  padding:10px 16px;
+  border:1px solid #38bdf8;
+  background:transparent;
+  color:#38bdf8;
+  border-radius:10px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.btn:hover{
+  background:#38bdf8;
+  color:#000;
+  transform:translateY(-2px);
+}
+
+/* HERO */
+.hero{
+  height:92vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+}
+
+.hero h1{
+  font-size:56px;
+  font-weight:700;
+  animation:fadeUp 1s ease;
+}
+
+.hero p{
+  max-width:750px;
+  margin-top:20px;
+  color:#94a3b8;
+  font-size:16px;
+  line-height:1.6;
+  animation:fadeUp 1.2s ease;
+}
+
+.hero button{
+  margin-top:30px;
+  padding:14px 30px;
+  background:#38bdf8;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:600;
+  transition:0.3s;
+  animation:fadeUp 1.4s ease;
+}
+
+.hero button:hover{
+  transform:translateY(-3px);
+  box-shadow:0 15px 35px rgba(56,189,248,0.35);
+}
+
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(30px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+/* SECTIONS */
+.section{
+  padding:90px 60px;
+}
+
+.title{
+  font-size:34px;
+  text-align:center;
+  margin-bottom:40px;
+  font-weight:600;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:25px;
+}
+
+.card{
+  background:rgba(15,23,42,0.65);
+  border:1px solid #1e293b;
+  padding:26px;
+  border-radius:16px;
+  backdrop-filter:blur(12px);
+  transition:0.4s;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  border-color:#38bdf8;
+}
+
+.card h3{
+  color:#38bdf8;
+  margin-bottom:10px;
+}
+
+.card p{
+  color:#94a3b8;
+  font-size:14px;
+  line-height:1.5;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:45px;
+  border-top:1px solid #1e293b;
+  color:#64748b;
+}
+
+/* animation */
+.hidden{opacity:0;transform:translateY(40px);transition:0.8s;}
+.show{opacity:1;transform:translateY(0);}
+
+</style>
+</head>
+<body>
+
+<div class="bg-glow one"></div>
+<div class="bg-glow two"></div>
+
+<nav>
+  <div class="logo">DocVerify AI</div>
+  <div>
+    <a href="#overview">Overview</a>
+    <a href="#workflow">How it Works</a>
+    <a href="#about">About</a>
+  </div>
+  <button class="btn" onclick="goLogin()">Login</button>
+</nav>
+
+<section class="hero">
+  <h1>Smart Document Verification System</h1>
+  <p>Verify documents instantly using AI-powered text extraction and secure cryptographic hashing to ensure authenticity and prevent fraud.</p>
+  <button onclick="scrollToSection()">Explore System</button>
+</section>
+
+<section class="section hidden" id="overview">
+  <div class="title">📌 Project Overview</div>
+  <div class="grid">
+    <div class="card"><h3>What is it?</h3><p>A smart AI system that verifies documents using OCR and hashing techniques.</p></div>
+    <div class="card"><h3>Goal</h3><p>To detect fake or tampered documents instantly with high accuracy.</p></div>
+    <div class="card"><h3>Use Case</h3><p>Useful for education, certificates, identity verification and fraud detection.</p></div>
+  </div>
+</section>
+
+<section class="section hidden" id="workflow">
+  <div class="title">⚙️ How It Works</div>
+  <div class="grid">
+    <div class="card"><h3>Step 1</h3><p>Upload document image</p></div>
+    <div class="card"><h3>Step 2</h3><p>OCR extracts text</p></div>
+    <div class="card"><h3>Step 3</h3><p>Generate SHA-256 hash</p></div>
+    <div class="card"><h3>Step 4</h3><p>Verify authenticity</p></div>
+  </div>
+</section>
+
+<section class="section hidden" id="about">
+  <div class="title">🔍 Complete Project Insight</div>
+  <div class="grid">
+
+    <div class="card">
+      <h3>🎯 Purpose</h3>
+      <p>Eliminate fake documents and provide a secure digital verification system.</p>
+    </div>
+
+    <div class="card">
+      <h3>🔐 Security</h3>
+      <p>Each document is uniquely identified using SHA-256 hashing, ensuring tamper detection.</p>
+    </div>
+
+    <div class="card">
+      <h3>🚀 Benefits</h3>
+      <p>Fast verification, fraud prevention, automation, and secure record management.</p>
+    </div>
+
+    <div class="card">
+      <h3>🔮 Future Scope</h3>
+      <p>Blockchain integration, AI improvement, cloud storage, and real-time verification APIs.</p>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  © 2026 DocVerify AI | Built for Secure Digital Future
+</footer>
+
+<script>
+function goLogin(){
+  window.location.href="http://localhost:5000/auth/google";
+}
+
+function scrollToSection(){
+  document.getElementById("overview").scrollIntoView({behavior:"smooth"});
+}
+
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting) entry.target.classList.add("show");
+  });
+});
+
+document.querySelectorAll(".hidden").forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
